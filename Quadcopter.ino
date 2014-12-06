@@ -6,7 +6,7 @@ void setup()
 }
 void loop()
 {
-  ChangeThrottle();
+  GetThrottle();
   Serial.println(Throttle);
   delay(100);
 }

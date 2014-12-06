@@ -1,26 +1,26 @@
-void ChangeThrottle()
+void GetThrottle()
 {  
     if (Serial.available() > 0) 
     {
       incomingByte = Serial.read();
       switch (incomingByte)
       {
-        case 40:
-          number_checking(-1);
+        case 108:
+          throttle_checking(-1);
         break;
-        case 38:
-          number_checking(1);
+        case 107:
+          throttle_checking(1);
         break;
-        case 37:
-          number_checking(-10);
+        /*case 37:
+          throttle_checking(-10);
         break;
         case 39:
-          number_checking(10);
-        break;
+          throttle_checking(10);
+        break;*/
       }
     }
 }
-void number_checking(short number)
+void throttle_checking(short number)
 {
   if (Throttle+number<=100)
   {
