@@ -1,6 +1,7 @@
 unsigned long  tp=millis();
 double pError=0.0;
-double PIDCompute(int mError, double kp, double ki, double kd, double Hval, double Lval, double Ip )
+double Ip=0.0;
+double PIDCompute(int mError, double kp, double ki, double kd, double Hval, double Lval)
 {
   unsigned long tn = millis();
   double dt=(double)(tn-tp);
@@ -19,4 +20,6 @@ double PIDCompute(int mError, double kp, double ki, double kd, double Hval, doub
   {
     U = Lval;
   }
+  //Serial.println(U);
+  return U;
 }

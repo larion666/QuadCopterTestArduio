@@ -1,7 +1,4 @@
-double Desired_Pitch_Angle=0.000;
-double Desired_Roll_Angle=0.000;
-double Desired_Yaw_Angle=0.000;
-void GetDesiredAngles();
+void GetDesiredAngles()
 {
     if (Serial.available() > 0) 
     {

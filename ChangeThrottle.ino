@@ -22,8 +22,8 @@ void GetThrottle()
 }
 void throttle_checking(short number)
 {
-  if (Throttle+number<=100)
+  if (Desired_Throttle+number<=100)
   {
-    Throttle+=number;
+    Desired_Throttle+=number;
   }
 }
