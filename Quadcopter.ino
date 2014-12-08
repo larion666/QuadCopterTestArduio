@@ -11,7 +11,7 @@ double Throttle = 0.000;
 double OutputThrottle = 0.000;
 double PitchAngle=0;
 double RollAngle=0;
-double Zangle=0;
+double YawAngle=0;
 double Desired_Pitch_Angle=0.000;
 double Desired_Roll_Angle=0.000;
 double Desired_Yaw_Angle=0.000;
@@ -26,6 +26,8 @@ float ypr[3];
 Quaternion q; // [w, x, y, z] quaternion container
 VectorFloat gravity;
 volatile bool mpuInterrupt = false;
+double PID_Pitch_value=0.000;
+double PID_Roll_value=0.000;
 void setup()
 {
   Serial.begin(115200);
@@ -49,14 +51,22 @@ void setup()
 void loop()
 {
   GetThrottle();
-  GetDesiredAngles();
-  EngineControl();
-  Get_angles_from_sensor();
-  PitchAngle=ypr[1] * 180/M_PI;
-  RollAngle=ypr[2] * 180/M_PI;
+  //GetDesiredAngles();
+  //Get_angles_from_sensor();
+  //EngineControl();
+  Serial.print(Desired_Pitch_Angle);
+  Serial.print(",");
+  Serial.print(Desired_Roll_Angle);
+  Serial.print(",");
   //Serial.print(PitchAngle);
   //Serial.print(",");
-  //Serial.println(RollAngle);
+  //Serial.print(PID_Pitch_value);
+  //Serial.print(",");
+  Serial.println(Desired_Throttle);
+  //Serial.print(",");
+  //Serial.print(RollAngle);
+  //Serial.print(",");
+  //Serial.println(PID_Roll_value);
   //Serial.println(Throttle);
-  //delay(50);
+  delay(50);
 }

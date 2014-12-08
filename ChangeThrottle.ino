@@ -11,12 +11,18 @@ void GetThrottle()
         case 107:
           throttle_checking(1);
         break;
-        /*case 37:
-          throttle_checking(-10);
+        case 104: //numpad8
+          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,1,15,-15);
         break;
-        case 39:
-          throttle_checking(10);
-        break;*/
+        case 98: //numpad2
+          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,-1,15,-15);
+        break;
+        case 100: //numpad4
+          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,-1,15,-15);
+        break;
+        case 102: //numpad6
+          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,1,15,-15);
+        break;
       }
     }
 }
@@ -26,4 +32,13 @@ void throttle_checking(short number)
   {
     Desired_Throttle+=number;
   }
+}
+
+double angle_checking(double angle, short number, double maxval, double minval)
+{
+  if (angle+number<=maxval && angle+number>=minval)// || angle+number>=minval)
+  {
+    angle+=number;
+  }
+  return angle;
 }
