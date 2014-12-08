@@ -1,4 +1,10 @@
-
+uint8_t devStatus;
+Quaternion q; // [w, x, y, z] quaternion container
+VectorFloat gravity;
+volatile bool mpuInterrupt = false;
+uint16_t fifoCount; // count of all bytes currently in FIFO
+uint8_t fifoBuffer[64];
+float ypr[3];
 void dmpDataReady() 
 {
     mpuInterrupt = true;

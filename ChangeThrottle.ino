@@ -1,4 +1,4 @@
-void GetThrottle()
+void GetThrottleAndDesiredAngles()
 {  
     if (Serial.available() > 0) 
     {
@@ -12,16 +12,16 @@ void GetThrottle()
           throttle_checking(1);
         break;
         case 104: //numpad8
-          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,1,15,-15);
+          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,1,Max_Pitch_Angle,Min_Pitch_Angle);
         break;
         case 98: //numpad2
-          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,-1,15,-15);
+          Desired_Pitch_Angle=angle_checking(Desired_Pitch_Angle,-1,Max_Pitch_Angle,Min_Pitch_Angle);
         break;
         case 100: //numpad4
-          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,-1,15,-15);
+          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,-1,Max_Roll_Angle,Min_Roll_Angle);
         break;
         case 102: //numpad6
-          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,1,15,-15);
+          Desired_Roll_Angle=angle_checking(Desired_Roll_Angle,1,Max_Roll_Angle,Min_Roll_Angle);
         break;
       }
     }

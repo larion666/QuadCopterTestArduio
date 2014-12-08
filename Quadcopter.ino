@@ -2,6 +2,7 @@
 #include <I2Cdev.h>
 #include <helper_3dmath.h>
 #include <MPU6050_6Axis_MotionApps20.h>
+#include "Config.h"
 //#include <I2Cdev.h>
 //#include <MPU6050_6Axis_MotionApps20.h>
 
@@ -17,17 +18,10 @@ double Desired_Roll_Angle=0.000;
 double Desired_Yaw_Angle=0.000;
 double Desired_Throttle=0.000;
 bool dmpReady = false; 
-uint8_t devStatus;
-uint16_t packetSize; // expected DMP packet size (default is 42 bytes)
-uint16_t fifoCount; // count of all bytes currently in FIFO
-uint8_t fifoBuffer[64];
-uint8_t mpuIntStatus;
-float ypr[3];
-Quaternion q; // [w, x, y, z] quaternion container
-VectorFloat gravity;
-volatile bool mpuInterrupt = false;
 double PID_Pitch_value=0.000;
 double PID_Roll_value=0.000;
+uint8_t mpuIntStatus;
+uint16_t packetSize; // expected DMP packet size (default is 42 bytes)
 void setup()
 {
   Serial.begin(115200);
@@ -50,23 +44,22 @@ void setup()
 }
 void loop()
 {
-  GetThrottle();
+  GetThrottleAndDesiredAngles();
   //GetDesiredAngles();
-  //Get_angles_from_sensor();
-  //EngineControl();
+  Get_angles_from_sensor();
+  EngineControl();
   Serial.print(Desired_Pitch_Angle);
   Serial.print(",");
+  Serial.print(PitchAngle);
+  Serial.print(",");
+  Serial.print(PID_Pitch_value);
+  Serial.print(",");
+  //Serial.println(Desired_Throttle);
+  //Serial.print(",");
   Serial.print(Desired_Roll_Angle);
   Serial.print(",");
-  //Serial.print(PitchAngle);
-  //Serial.print(",");
-  //Serial.print(PID_Pitch_value);
-  //Serial.print(",");
-  Serial.println(Desired_Throttle);
-  //Serial.print(",");
-  //Serial.print(RollAngle);
-  //Serial.print(",");
-  //Serial.println(PID_Roll_value);
+  Serial.print(RollAngle);
+  Serial.print(",");
+  Serial.println(PID_Roll_value);
   //Serial.println(Throttle);
-  delay(50);
 }
